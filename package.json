@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/Prietosk1/js-playground/issues"
   },
-  "homepage": "https://github.com/Prietosk1/js-playground#readme"
+  "homepage": "https://github.com/Prietosk1/js-playground#readme",
+  "dependencies": {
+    "xmlhttprequest": "^1.8.0"
+  }
 }
