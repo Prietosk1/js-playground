@@ -205,8 +205,12 @@ button {
 }
 
 .trendingPreview-movieList {
-    display: flex;
-    width: fit-content;
+    display: grid;
+    place-items: center;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fill, 180px);
+    width: 90%;
+    row-gap: 20px;
   overflow-x: scroll;
   overflow-y: hidden;
   white-space: nowrap;
@@ -377,6 +381,12 @@ footer {
 /* Navigation */
 .inactive {
   display: none;
+}
+
+#trendingPreview {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 @media (max-width: 660px) {
