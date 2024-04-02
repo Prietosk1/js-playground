@@ -36,6 +36,14 @@
         width: 20px;
         height: 20px;
     }
+
+    .navbar-title, .mode-switch-container {
+        width: fit-content;
+    }
+    .mode-switch-container {
+        margin-right: 0;
+        margin-left: auto;
+    }
     /* Search section */
     .search-form {
         width: 80%;

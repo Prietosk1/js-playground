@@ -47,9 +47,19 @@ h2 {
     margin: 20px;
 }
 
+.navbar-title, .mode-switch-container {
+    display: flex;
+    align-items: center;
+    width: 250px;
+}
+
 .navbar-title {
-    color: var(--border-color);
+    justify-content: start;
+
     font-size: 32px;
+
+    color: var(--border-color);
+    
 }
 
 .navbar-list-container {
@@ -61,6 +71,9 @@ h2 {
     margin: 0 20px;
 
     color: var(--secondary-color);
+}
+.mode-switch-container {
+    justify-content: end;
 }
 
 .mode-switch {
