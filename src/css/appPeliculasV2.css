@@ -199,6 +199,10 @@ h2 {
 
 .movie-info {
     justify-content: space-between;
+
+    width: 150px;
+    height: 90px;
+
     margin: 10px auto 20px;
 }
 
@@ -208,7 +212,7 @@ h2 {
 
     font-weight: bold;
 
-    margin: 10px 0 5px;
+    margin: 5px 0;
 }
 .star-icon {
     width: 20px;

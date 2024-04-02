@@ -21,6 +21,7 @@ async function obtenerTrending(tipoContenedor) {
   // Guardamos las peliculas en un arreglo
   const movies = resultsData.results;
 
+  console.log(movies);
   // Por cada pelicula, se creara nuevos elementos para agregarlos a las peliculas en tendencia
   movies.forEach((movie) => {
     // Creamos el contenedor de las peliculas
@@ -30,7 +31,7 @@ async function obtenerTrending(tipoContenedor) {
     // Creamos la imagen con sus propiedades principales
     const movieImg = document.createElement("img");
     movieImg.classList.add("movie-img");
-    movieImg.setAttribute("alt", movies.title);
+    movieImg.setAttribute("alt", movie.title);
     movieImg.setAttribute(
       "src",
       `https://image.tmdb.org/t/p/w300${movie.poster_path}`
@@ -49,13 +50,15 @@ async function obtenerTrending(tipoContenedor) {
     starIcon.setAttribute("alt", "Star Icon");
     starIcon.setAttribute("src", "/src/assets/img/star.png");
     // Y terminamos con su calificacion
-    const ratingText = document.createTextNode(movies.vote_average);
+    const ratingText = document.createTextNode(movie.vote_average.toFixed(1));
 
     // Ahora crearemos su titulo
-    const movieTitle = document.createTextNode(movies.title);
+    const movieTitle = document.createTextNode(movie.title);
 
     console.log(movieImg.getAttribute("alt"));
     console.log(movieImg.getAttribute("src"));
+    console.log(ratingText);
+    console.log(movieTitle);
 
     // Unimos los elementos
     movieRating.appendChild(starIcon);
