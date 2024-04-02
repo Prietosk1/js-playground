@@ -14,7 +14,7 @@
     --border-color: #E63946;
     --primary-color: #1D3557;
     --secondary-color: #457B9D;
-    --other-use: #A8DADC;
+    --other-use: #a8dadc86;
 }
 
 body {
@@ -26,7 +26,12 @@ body {
 }
 
 h1 {
-    color: var(--primary-color);
+    color: var(--border-color);
+    font-size: 32px;
+}
+
+h2 {
+    font-size: 28px;
 }
 
 /* Header and Navbar*/
@@ -130,11 +135,11 @@ h1 {
     width: 50px;
     height: 50px;
 
-    margin: 0 5px;
+    margin: 0 3px;
+
+    background-color: var(--other-use);
     border: none;
     border-radius: 25px;
-
-    background-color: var(--light-mode-background);
 }
 
 .search-button:hover {
@@ -158,12 +163,68 @@ h1 {
     border: none;
 }
 
+/* Daily Trending Section*/
+.subtitle-daily-section {
+    color: var(--primary-color);
+}
+
+.daily-trends-section {
+    width: 900px;
+    height: fit-content;
+
+    margin: auto;
+}
+
+.daily-movies-container {
+    display: grid;
+    justify-content: center;
+    place-items: center;
+    grid-template-columns: repeat(5, 1fr);
+
+    width: 100%;
+}
+
+.movie-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.movie-img {
+    width: 150px;
+
+    border-radius: 10px;
+}
+
+.movie-info {
+    justify-content: space-between;
+    margin: 10px auto 20px;
+}
+
+.movie-rating {
+    display: flex;
+    align-items: center;
+
+    font-weight: bold;
+
+    margin: 10px 0 5px;
+}
+.star-icon {
+    width: 20px;
+    margin-right: 5px;
+}
+
+.movie-title {
+    width: 150px;
+
+    font-size: 18px;
+}
+
 /* Footer*/
 footer {
     display: grid;
     place-items: center;
-    position: absolute;
-    bottom: 0;
+    
 
     width: 100%;
     height: 50px;
@@ -174,4 +235,27 @@ footer {
 /* Clases especiales*/
 .inactive {
     display: none;
+  }
+
+.separator30 {
+    height: 30px;
+  }
+.separator40 {
+    height: 40px;
+  }
+.separator50 {
+    height: 50px;
+  }
+
+  .breaker-line {
+    display: inline-block;
+
+    height: 2px;
+    width: 100%;
+    
+    margin: 20px 0;
+
+    background: linear-gradient(90deg,var(--border-color), transparent);
+
+    border-radius: 2px;
   }
