@@ -163,19 +163,20 @@ h2 {
     border: none;
 }
 
-/* Daily Trending Section*/
-.subtitle-daily-section {
-    color: var(--primary-color);
-}
+/* Daily and Weekly Trending Section*/
 
-.daily-trends-section {
+.daily-trends-section, .weekly-trends-section {
     width: 900px;
     height: fit-content;
 
     margin: auto;
 }
 
-.daily-movies-container {
+.subtitle-daily-section, .subtitle-weekly-section {
+    color: var(--primary-color);
+}
+
+.daily-movies-container, .weekly-movies-container {
     display: grid;
     justify-content: center;
     place-items: center;
@@ -220,6 +221,49 @@ h2 {
     font-size: 18px;
 }
 
+/* Category section*/
+.categories-section {
+    width: 700px;
+    height: fit-content;
+
+    margin: auto;
+}
+.subtitle-category-section {
+    text-align: center;
+}
+.categories-container {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fill,150px);
+    place-items: center;
+    row-gap: 10px;
+}
+
+.categorie {
+    display: flex;
+    align-items: center;
+
+    border: none;
+}
+
+.categorie:hover {
+    cursor: pointer;
+}
+
+.categorie-color {
+    width: 25px;
+    height: 15px;
+
+    background-color: red;
+    border-radius: 10px;
+}
+
+.categorie-name {
+    font-weight: bold;
+
+    margin-left: 8px;
+}
+
 /* Footer*/
 footer {
     display: grid;
@@ -247,7 +291,7 @@ footer {
     height: 50px;
   }
 
-  .breaker-line {
+.breaker-line {
     display: inline-block;
 
     height: 2px;
@@ -256,6 +300,19 @@ footer {
     margin: 20px 0;
 
     background: linear-gradient(90deg,var(--border-color), transparent);
+
+    border-radius: 2px;
+  }
+
+  .breaker-line-2 {
+    display: inline-block;
+
+    height: 2px;
+    width: 100%;
+    
+    margin: 20px 0;
+
+    background: linear-gradient(90deg,transparent, var(--border-color), transparent);
 
     border-radius: 2px;
   }
