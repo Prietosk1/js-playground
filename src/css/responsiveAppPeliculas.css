@@ -1,9 +1,21 @@
+@media (max-width: 1000px) {
+    /* Daily Trending Section*/
+    .daily-trends-section {
+        width: 600px;
+    }
+    .daily-movies-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
 @media (min-width: 850px) {
+    /* Header and navbar */
     .mobile-button-container {
         display: none;
     }
 }
 @media (max-width: 850px) {
+    /* Header and navbar */
     .navbar-list-container {
         display: none;
     }
@@ -16,5 +28,23 @@
     .actual-mode {
         width: 20px;
         height: 20px;
+    }
+    /* Search section */
+    .search-form {
+        width: 90%;
+    }
+
+    .search-input {
+        width: 85%;
+    }
+}
+
+@media (max-width: 700px) {
+    /* Daily Trending Section*/
+    .daily-trends-section {
+        width: 90%;
+    }
+    .daily-movies-container {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
