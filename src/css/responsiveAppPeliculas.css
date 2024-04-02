@@ -1,0 +1,20 @@
+@media (min-width: 850px) {
+    .mobile-button-container {
+        display: none;
+    }
+}
+@media (max-width: 850px) {
+    .navbar-list-container {
+        display: none;
+    }
+    .mode-switch {
+        height: 30px;
+        width: 60px;
+        margin-left: auto;
+        margin-right: 20px;
+    }
+    .actual-mode {
+        width: 20px;
+        height: 20px;
+    }
+}
