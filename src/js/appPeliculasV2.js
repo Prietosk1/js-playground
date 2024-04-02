@@ -76,7 +76,7 @@ async function obtenerTrending(tipoContenedor) {
 async function obtenerCategorias() {
   // Consultamos en la API los datos de las categorias en español
   const results = await fetch(
-    "https://api.themoviedb.org/3/genre/movie/list?language=es&api_key=" +
+    "https://api.themoviedb.org/3/genre/movie/list?api_key=" +
       API_KEY_AppPeliculas
   );
   // Si tenemos exito se convierten en un archivo JSON
@@ -88,29 +88,31 @@ async function obtenerCategorias() {
 
   // Por cada pelicula, se creara nuevos elementos para agregarlos a las peliculas en tendencia
   categories.forEach((category) => {
-    // Guardamos el contenedor de categorias
-    const categoriesPreviewMovies = document.querySelector(
-      "#categoriesPreview .categoriesPreview-list"
-    );
-
-    // Creamos el contenedor de la categoria
-    const categoryContainer = document.createElement("div");
-    categoryContainer.classList.add("category-container");
+    // Creamos el boton de la categoria
+    const categoryContainer = document.createElement("button");
+    categoryContainer.classList.add("category");
+    // Creamos el recuadro de color de la categoria
+    const categoryColor = document.createElement("div");
+    categoryColor.classList.add("category-color");
+    categoryColor.id = `id${category.id}`;
     // Creamos el espacio para el texto de la categoria
-    const movieCategory = document.createElement("h3");
-    movieCategory.classList.add("category-title");
-    movieCategory.id = `id${category.id}`;
+    const categoryName = document.createElement("p");
+    categoryName.classList.add("category-name");
     // Creamos el texto de la categoria
     const categoryText = document.createTextNode(category.name);
 
     // Combinamos todos los elementos
-    movieCategory.appendChild(categoryText);
-    categoryContainer.appendChild(movieCategory);
-    categoriesPreviewMovies.appendChild(categoryContainer);
-    console.log(movieCategory);
+    categoryName.appendChild(categoryText);
+
+    categoryContainer.appendChild(categoryColor);
+    categoryContainer.appendChild(categoryName);
+    categoriesContainer.appendChild(categoryContainer);
+    console.log(categoryName);
     console.log(categoryContainer);
-    console.log(categoriesPreviewMovies);
+    console.log(categoriesContainer);
   });
 }
+
+obtenerCategorias();
 obtenerTrending(dailyMoviesContainer);
 obtenerTrending(weeklyMoviesContainer);
