@@ -15,7 +15,14 @@
     }
 }
 @media (max-width: 850px) {
+    h2 {
+        font-size: 24px;
+    }
     /* Header and navbar */
+    .navbar-title {
+        color: var(--border-color);
+        font-size: 26px;
+    }
     .navbar-list-container {
         display: none;
     }
@@ -31,11 +38,11 @@
     }
     /* Search section */
     .search-form {
-        width: 90%;
+        width: 80%;
     }
 
     .search-input {
-        width: 85%;
+        width: 75%;
     }
 }
 
@@ -46,5 +53,13 @@
     }
     .daily-movies-container {
         grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 350px) {
+    /* Daily Trending Section*/
+
+    .daily-movies-container {
+        grid-template-columns: 1fr;
     }
 }

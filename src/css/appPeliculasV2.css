@@ -25,11 +25,6 @@ body {
     background-color: var(--light-mode-background);
 }
 
-h1 {
-    color: var(--border-color);
-    font-size: 32px;
-}
-
 h2 {
     font-size: 28px;
 }
@@ -50,6 +45,11 @@ h2 {
     width: 80%;
 
     margin: 20px;
+}
+
+.navbar-title {
+    color: var(--border-color);
+    font-size: 32px;
 }
 
 .navbar-list-container {
