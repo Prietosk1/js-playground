@@ -1,9 +1,9 @@
 @media (max-width: 1000px) {
     /* Daily Trending Section*/
-    .daily-trends-section {
+    .daily-trends-section, .weekly-trends-section {
         width: 600px;
     }
-    .daily-movies-container {
+    .daily-movies-container, .weekly-movies-container {
         grid-template-columns: repeat(3, 1fr);
     }
 }
@@ -44,22 +44,33 @@
     .search-input {
         width: 75%;
     }
+    /* Category section*/
+    .categories-section {
+    width: 500px;
+}
 }
 
 @media (max-width: 700px) {
     /* Daily Trending Section*/
-    .daily-trends-section {
+    .daily-trends-section, .weekly-trends-section {
         width: 90%;
     }
-    .daily-movies-container {
+    .daily-movies-container, .weekly-movies-container  {
         grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 550px) {
+    /* Category section*/
+    .categories-section {
+        width: 80%;
     }
 }
 
 @media (max-width: 350px) {
     /* Daily Trending Section*/
 
-    .daily-movies-container {
+    .daily-movies-container, .weekly-movies-container {
         grid-template-columns: 1fr;
     }
 }
