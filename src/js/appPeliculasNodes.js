@@ -17,6 +17,7 @@ const searchButton = document.querySelector(".search-button");
 
 // Seccion tendencias
 let movieInfoText = document.querySelectorAll(".movie-info");
+let movieImg = document.querySelectorAll(".movie-img");
 
 // Seccion tendencias diarias
 const dailyMoviesContainer = document.querySelector(
@@ -32,6 +33,19 @@ const weeklyMoviesContainer = document.querySelector(
 const categoriesContainer = document.querySelector(
   ".categories-section .categories-container"
 );
+
+// Seccion de pelicula elegida
+const choosenMovieSection = document.querySelector(".choosen-movie-section");
+const choosenMovieContainer = document.querySelector(
+  ".choosen-movie-container"
+);
+const choosenMovieCloseButton = document.querySelector(".close-button");
+let choosenMovieImg = document.querySelector(".choosen-movie-img");
+let choosenMovieTitle = document.querySelector(".choosen-movie-title");
+let choosenMovieRating = document.querySelector(".choosen-movie-rating");
+let choosenMovieDate = document.querySelector(".choosen-movie-date");
+let choosenMovieOverview = document.querySelector(".choosen-movie-overview");
+const choosenMovieGenres = document.querySelector(".choosen-movie-genres");
 
 // Footer
 const footerContainer = document.querySelector("footer");

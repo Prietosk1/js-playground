@@ -27,9 +27,11 @@ async function obtenerTrending(tipoContenedor) {
   console.log(movies);
   // Por cada pelicula, se creara nuevos elementos para agregarlos a las peliculas en tendencia
   movies.forEach((movie) => {
-    // Creamos el contenedor de las peliculas
+    // Creamos el contenedor de las peliculas y le agregamos una id unica
     const movieContainer = document.createElement("div");
     movieContainer.classList.add("movie-container");
+    movieContainer.id = movie.id;
+    movieContainer.classList.add(tiempo);
 
     // Creamos la imagen con sus propiedades principales
     const movieImg = document.createElement("img");
@@ -39,6 +41,9 @@ async function obtenerTrending(tipoContenedor) {
       "src",
       `https://image.tmdb.org/t/p/w300${movie.poster_path}`
     );
+    movieImg.onclick = function () {
+      showMovieInfo(movieContainer.id, tiempo);
+    };
 
     // Creamos el contenedor de la info de la pelicula
     const movieInfo = document.createElement("div");
@@ -75,10 +80,13 @@ async function obtenerTrending(tipoContenedor) {
     tipoContenedor.appendChild(movieContainer);
   });
 
+  // Cargamos de nuevo los elementos creados
   myP = document.querySelectorAll("p");
+  movieImg = document.querySelectorAll(".movie-img");
   movieInfoText = document.querySelectorAll(".movie-info");
 }
 
+// Funcion pra obtener las categorias
 async function obtenerCategorias() {
   // Consultamos en la API los datos de las categorias en español
   const results = await fetch(
@@ -150,6 +158,13 @@ function changeTheme() {
     changeStyleSingle(searchForm, "border", "2px solid var(--border-color)");
     changeStyleSingle(searchInput, "color", "var(--light-mode-background)");
 
+    // Cambios modal de Pelicula elegida
+    changeStyleSingle(
+      choosenMovieContainer,
+      "backgroundColor",
+      "var(--dark-mode-background)"
+    );
+
     // Cambios footer
     changeStyleSingle(
       footerContainer,
@@ -193,6 +208,13 @@ function changeTheme() {
     changeStyleSingle(searchForm, "border", "2px solid var(--primary-color)");
     changeStyleSingle(searchInput, "color", "var(--primary-color)");
 
+    // Cambios modal de Pelicula elegida
+    changeStyleSingle(
+      choosenMovieContainer,
+      "backgroundColor",
+      "var(--light-mode-background)"
+    );
+
     // Cambios en el footer
     changeStyleSingle(footerContainer, "backgroundColor", "var(--other-use)");
 
@@ -214,13 +236,108 @@ function changeStyleMultiple(nodeList, newProperty, newValue) {
   });
 }
 
+// Funcion para cerrar el modal de la info de la pelicula
+function closeMovieInfo() {
+  choosenMovieSection.classList.add("inactive");
+}
+
+// Funcion para mostrar datos de la pelicula
+async function showMovieInfo(myId, myTime) {
+  choosenMovieSection.classList.remove("inactive");
+  // Se consulta una vez mas a la API con los datos de las tendencias diarias
+  const results = await fetch(
+    "https://api.themoviedb.org/3/trending/movie/" +
+      myTime +
+      "?api_key=" +
+      API_KEY_AppPeliculas
+  );
+  // Si se encuentran, se guardan en un archivo JSON
+  const resultsData = await results.json();
+
+  // Guardamos las peliculas en un arreglo
+  const movies = resultsData.results;
+
+  // Ahora consultamos los datos de las categorias
+  // Consultamos en la API los datos de las categorias en español
+  const categoryResults = await fetch(
+    "https://api.themoviedb.org/3/genre/movie/list?api_key=" +
+      API_KEY_AppPeliculas
+  );
+  // Si tenemos exito se convierten en un archivo JSON
+  const categoryResultsData = await categoryResults.json();
+
+  // Guardamos las categorias en un arreglo
+  const categories = categoryResultsData.genres;
+
+  // Revisamos en el array cada elemento para ver si encontramos su posicion, y asi poder acceder a los datos relevantes
+  movies.forEach((movie, index) => {
+    if (movie.id == myId) {
+      console.log("ENTRE");
+      choosenMovieImg.setAttribute(
+        "src",
+        "https://image.tmdb.org/t/p/original" + movie.backdrop_path
+      );
+      choosenMovieTitle.textContent = movie.title;
+      const choosenMovieRatingText = document.createTextNode(
+        movie.vote_average.toFixed(1)
+      );
+
+      const choosenMovieDateText = document.createTextNode(movie.release_date);
+
+      choosenMovieOverview.textContent = movie.overview;
+      console.log(movie.genre_ids.length);
+      console.log(categories);
+      for (i = 0; i < movie.genre_ids.length; i++) {
+        console.log("YO TAMBIEN ENTRE");
+        const categoryContainer = document.createElement("button");
+        categoryContainer.classList.add("category");
+        // Creamos el recuadro de color de la categoria
+        const categoryColor = document.createElement("div");
+        categoryColor.classList.add("category-color");
+        categoryColor.id = `id${movie.genre_ids[i]}`;
+        // Creamos el espacio para el texto de la categoria
+        const categoryName = document.createElement("p");
+        categoryName.classList.add("category-name");
+        // Creamos el texto de la categoria
+        let categoryText;
+        categories.forEach((myCategory, index) => {
+          if (myCategory.id == movie.genre_ids[i]) {
+            categoryText = document.createTextNode(categories[index].name);
+            return;
+          }
+        });
+
+        categoryName.appendChild(categoryText);
+
+        categoryContainer.appendChild(categoryColor);
+        categoryContainer.appendChild(categoryName);
+
+        choosenMovieGenres.appendChild(categoryContainer);
+        console.log(categoryContainer);
+      }
+
+      choosenMovieRating.appendChild(choosenMovieRatingText);
+      choosenMovieDate.appendChild(choosenMovieDateText);
+      return;
+    }
+    console.log("F mano");
+  });
+}
+
 // Cada ves que se de click al boton de cambio de tema se cambiara el
 switchButton.addEventListener("click", () => {
   console.log("cambio");
   changeTheme();
 });
 
+// Cada vez que se presione el boton de cerrar, se cerrara el modal
+choosenMovieCloseButton.addEventListener("click", () => {
+  closeMovieInfo();
+});
+
+// Variables de estados
 let actualTheme = "light";
+let panelInfoPelicula = false;
 
 obtenerCategorias();
 obtenerTrending(dailyMoviesContainer);

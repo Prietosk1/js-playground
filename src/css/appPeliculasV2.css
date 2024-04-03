@@ -241,6 +241,10 @@ h3 {
     border-radius: 10px;
 }
 
+.movie-img:hover {
+  cursor: pointer;
+}
+
 .movie-info {
     justify-content: space-between;
 
@@ -315,7 +319,7 @@ h3 {
 }
 
 /* Seccion de pelicula elejida*/
-.choosen-movie {
+.choosen-movie-section {
   display: grid;
   place-items: center;
   position: fixed;
