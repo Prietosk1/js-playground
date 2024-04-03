@@ -21,6 +21,9 @@ async function obtenerTrending(tipoContenedor) {
   // Guardamos las peliculas en un arreglo
   const movies = resultsData.results;
 
+  // Cambiamos al placeholder la primera pelicula que obtengamos de la base de datos
+  searchInput.placeholder = movies[0].title;
+
   console.log(movies);
   // Por cada pelicula, se creara nuevos elementos para agregarlos a las peliculas en tendencia
   movies.forEach((movie) => {
@@ -142,10 +145,16 @@ function changeTheme() {
       "backgroundColor",
       "var(--light-mode-background)"
     );
+
+    // Cambios seccion busqueda
+    changeStyleSingle(searchForm, "border", "2px solid var(--border-color)");
+    changeStyleSingle(searchInput, "color", "var(--light-mode-background)");
+
+    // Cambios footer
     changeStyleSingle(
       footerContainer,
       "backgroundColor",
-      "var(--border-color)"
+      "var(--light-border-color)"
     );
 
     // Se cambia el tema a oscuro
@@ -179,6 +188,12 @@ function changeTheme() {
       "backgroundColor",
       "var(--dark-mode-background)"
     );
+
+    // Cambios seccion busqueda
+    changeStyleSingle(searchForm, "border", "2px solid var(--primary-color)");
+    changeStyleSingle(searchInput, "color", "var(--primary-color)");
+
+    // Cambios en el footer
     changeStyleSingle(footerContainer, "backgroundColor", "var(--other-use)");
 
     // Se cambia el tema a claro

@@ -10,6 +10,11 @@ const navbarOptions = document.querySelectorAll(".navbar-list-container a");
 const switchButton = document.querySelector(".mode-switch");
 const circleSwitchButton = document.querySelector(".actual-mode");
 
+// Seccion busquedas
+const searchForm = document.querySelector(".search-form");
+const searchInput = document.querySelector(".search-input");
+const searchButton = document.querySelector(".search-button");
+
 // Seccion tendencias
 let movieInfoText = document.querySelectorAll(".movie-info");
 
