@@ -32,6 +32,10 @@ h2 {
     font-size: 28px;
 }
 
+h3 {
+  font-size: 20px;
+}
+
 /* Header and Navbar*/
 .navbar {
     display: grid;
@@ -310,6 +314,111 @@ h2 {
     margin-left: 8px;
 }
 
+/* Seccion de pelicula elejida*/
+.choosen-movie {
+  display: grid;
+  place-items: center;
+  position: fixed;
+  top: 0;
+
+  width: 100%;
+  height: 100vh;
+
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+}
+
+.close-button {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  
+  width: 60px;
+
+  padding: 20px;
+
+  background-color: rgba(0, 0, 0, 0.3);
+
+  border-radius: 30px;
+
+  transition: background-color 0.4s;
+}
+
+.close-button:hover {
+  cursor: pointer;
+
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.close-button:active {
+  background-color: rgba(255, 71, 71, 0.8);
+  transition: background-color 0.05s;
+}
+
+.choosen-movie-container {
+  max-height: 90vh;
+  height: fit-content;
+  width: 600px;
+
+  background-color: var(--light-mode-background);
+
+  border-radius: 20px;
+
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+.choosen-movie-img {
+  width: 100%;
+  height: auto;
+
+  border-radius: 20px;
+}
+
+.choosen-movie-description {
+  margin: 20px 40px 40px;
+}
+.movie-description-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+
+  margin-bottom: 10px;
+}
+
+.choosen-movie-title {
+  width: 80%;
+  color: var(--primary-color);
+}
+
+.choosen-movie-rating {
+  display: flex;
+  align-items: center;
+
+  width: fit-content;
+  height: 35px;
+
+  font-weight: bold;
+}
+
+.big-star-icon {
+  width: auto;
+  height: inherit;
+
+  margin-right: 10px;
+}
+
+.choosen-movie-overview {
+  margin: 15px 0;
+}
+
+.choosen-movie-genres {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+
 /* Footer*/
 footer {
     display: grid;
@@ -373,6 +482,19 @@ footer {
     width: 100%;
     
     margin: 20px 0;
+
+    background: linear-gradient(90deg,transparent, var(--border-color), transparent);
+
+    border-radius: 2px;
+  }
+
+  .breaker-line-less-margin {
+    display: inline-block;
+
+    height: 2px;
+    width: 100%;
+    
+    margin: 5px 0;
 
     background: linear-gradient(90deg,transparent, var(--border-color), transparent);
 
