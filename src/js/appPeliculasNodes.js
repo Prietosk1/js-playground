@@ -5,6 +5,7 @@ const myh3 = document.querySelectorAll("h3");
 let myP = document.querySelectorAll("p");
 
 // Headre - navbar
+const navbar = document.querySelector(".navbar");
 const navbarOptions = document.querySelectorAll(".navbar-list-container a");
 const switchButton = document.querySelector(".mode-switch");
 const circleSwitchButton = document.querySelector(".actual-mode");

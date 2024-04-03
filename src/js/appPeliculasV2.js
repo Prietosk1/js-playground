@@ -129,6 +129,7 @@ function changeTheme() {
     changeStyleSingle(myBody, "backgroundColor", "var(--dark-mode-background)");
 
     // Cambios navbar
+    changeStyleSingle(navbar, "backgroundColor", "var(--dark-mode-background)");
     changeStyleMultiple(navbarOptions, "color", "var(--other-use)");
     changeStyleSingle(
       switchButton,
@@ -161,6 +162,11 @@ function changeTheme() {
     );
 
     // Cambios navbar
+    changeStyleSingle(
+      navbar,
+      "backgroundColor",
+      "var(--light-mode-background)"
+    );
     changeStyleMultiple(navbarOptions, "color", "var(--secondary-color)");
     changeStyleSingle(
       switchButton,
