@@ -71,6 +71,9 @@ async function obtenerTrending(tipoContenedor) {
     movieContainer.appendChild(movieInfo);
     tipoContenedor.appendChild(movieContainer);
   });
+
+  myP = document.querySelectorAll("p");
+  movieInfoText = document.querySelectorAll(".movie-info");
 }
 
 async function obtenerCategorias() {
@@ -111,7 +114,92 @@ async function obtenerCategorias() {
     console.log(categoryContainer);
     console.log(categoriesContainer);
   });
+
+  myP = document.querySelectorAll("p");
 }
+
+// Funcion para cambiar los temas
+function changeTheme() {
+  if (actualTheme == "light") {
+    // Cambios generales
+    changeStyleMultiple(myh2, "color", "var(--light-mode-background");
+    changeStyleMultiple(myh3, "color", "var(--light-mode-background");
+    changeStyleMultiple(myP, "color", "var(--light-mode-background");
+    changeStyleMultiple(movieInfoText, "color", "var(--light-mode-background");
+    changeStyleSingle(myBody, "backgroundColor", "var(--dark-mode-background)");
+
+    // Cambios navbar
+    changeStyleMultiple(navbarOptions, "color", "var(--other-use)");
+    changeStyleSingle(
+      switchButton,
+      "border",
+      "2px solid var(--light-mode-background)"
+    );
+    changeStyleSingle(switchButton, "justifyContent", "end");
+    changeStyleSingle(
+      circleSwitchButton,
+      "backgroundColor",
+      "var(--light-mode-background)"
+    );
+    changeStyleSingle(
+      footerContainer,
+      "backgroundColor",
+      "var(--border-color)"
+    );
+
+    // Se cambia el tema a oscuro
+    actualTheme = "dark";
+  } else {
+    changeStyleMultiple(myh2, "color", "var(--primary-color)");
+    changeStyleMultiple(myh3, "color", "var(--primary-color)");
+    changeStyleMultiple(myP, "color", "var(--primary-color)");
+    changeStyleMultiple(movieInfoText, "color", "var(--primary-color)");
+    changeStyleSingle(
+      myBody,
+      "backgroundColor",
+      "var(--light-mode-background)"
+    );
+
+    // Cambios navbar
+    changeStyleMultiple(navbarOptions, "color", "var(--secondary-color)");
+    changeStyleSingle(
+      switchButton,
+      "border",
+      "2px solid var(--dark-mode-background)"
+    );
+    changeStyleSingle(switchButton, "justifyContent", "start");
+    changeStyleSingle(
+      circleSwitchButton,
+      "backgroundColor",
+      "var(--dark-mode-background)"
+    );
+    changeStyleSingle(footerContainer, "backgroundColor", "var(--other-use)");
+
+    // Se cambia el tema a claro
+    actualTheme = "light";
+  }
+}
+
+// Funcion para cambiar el estilo de un elemento
+function changeStyleSingle(myElement, newProperty, newValue) {
+  myElement.style[newProperty] = newValue;
+}
+
+// Funcion para cambiar el estilo de multiples elementos
+function changeStyleMultiple(nodeList, newProperty, newValue) {
+  const elementArray = Array.from(nodeList);
+  elementArray.forEach((element) => {
+    element.style[newProperty] = newValue;
+  });
+}
+
+// Cada ves que se de click al boton de cambio de tema se cambiara el
+switchButton.addEventListener("click", () => {
+  console.log("cambio");
+  changeTheme();
+});
+
+let actualTheme = "light";
 
 obtenerCategorias();
 obtenerTrending(dailyMoviesContainer);

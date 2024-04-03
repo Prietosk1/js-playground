@@ -85,6 +85,8 @@ h2 {
     border: 2px solid var(--dark-mode-background);
 
     border-radius: 20px;
+
+    transition: all 1s;
 }
 
 .actual-mode {
@@ -95,6 +97,8 @@ h2 {
 
     background-color: var(--dark-mode-background);
     border-radius: 15px;
+
+    transition: all 1s;
 }
 
 .actual-mode:hover {
@@ -261,6 +265,8 @@ h2 {
     align-items: center;
 
     border: none;
+
+    background-color: transparent;
 }
 
 .category:hover {
