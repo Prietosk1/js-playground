@@ -368,13 +368,23 @@ h3 {
 
   border-radius: 20px;
 
-  overflow: hidden;
-  overflow-y: scroll;
+  overflow: overlay;
 }
 
+.choosen-movie-container::-webkit-scrollbar {
+  position: absolute;
+  width: 7px;
+}
+
+.choosen-movie-container::-webkit-scrollbar-thumb {
+  background-color: rgba(131, 131, 131, 0.75);
+  border-radius: 5px;
+}
 .choosen-movie-img {
   width: 100%;
   height: auto;
+
+  margin: auto;
 
   border-radius: 20px;
 }
