@@ -25,7 +25,7 @@ async function getWeeklyTrending() {
 }
 
 // Funcion pra obtener las categorias
-async function obtenerCategorias() {
+async function getCategories() {
   // Consultamos en la API los datos de las categorias en español
   const results = await fetch(
     "https://api.themoviedb.org/3/genre/movie/list?api_key=" +
@@ -35,32 +35,9 @@ async function obtenerCategorias() {
   const resultsData = await results.json();
 
   // Guardamos las categorias en un arreglo
-  const categories = resultsData.genres;
+  categoryList = resultsData.genres;
 
-  // Por cada pelicula, se creara nuevos elementos para agregarlos a las peliculas en tendencia
-  categories.forEach((category) => {
-    // Creamos el boton de la categoria
-    const categoryContainer = document.createElement("button");
-    categoryContainer.classList.add("category");
-    // Creamos el recuadro de color de la categoria
-    const categoryColor = document.createElement("div");
-    categoryColor.classList.add("category-color");
-    categoryColor.id = `id${category.id}`;
-    // Creamos el espacio para el texto de la categoria
-    const categoryName = document.createElement("p");
-    categoryName.classList.add("category-name");
-    // Creamos el texto de la categoria
-    const categoryText = document.createTextNode(category.name);
-
-    // Combinamos todos los elementos
-    categoryName.appendChild(categoryText);
-
-    categoryContainer.appendChild(categoryColor);
-    categoryContainer.appendChild(categoryName);
-    categoriesContainer.appendChild(categoryContainer);
-  });
-
-  myP = document.querySelectorAll("p");
+  chargeCategories(categoryList, categoriesContainer);
 }
 
 // Funcion para mostrar datos de la pelicula
@@ -79,7 +56,7 @@ async function showMovieInfo(myId, myTime) {
   const movies = resultsData.results;
 
   // Ahora consultamos los datos de las categorias
-  // Consultamos en la API los datos de las categorias en español
+  // Consultamos en la API los datos de las categorias
   const categoryResults = await fetch(
     "https://api.themoviedb.org/3/genre/movie/list?api_key=" +
       API_KEY_AppPeliculas
@@ -177,7 +154,9 @@ async function showMovieInfo(myId, myTime) {
   });
 }
 
+// Funcion para cargar las peliculas
 function chargeMovies(newData, time) {
+  // Limpiamos todo el contenedor
   mainMoviesContainer.innerHTML = "";
 
   // Cambiamos al placeholder la primera pelicula que obtengamos de la base de datos
@@ -240,7 +219,36 @@ function chargeMovies(newData, time) {
   movieImg = document.querySelectorAll(".movie-img");
   movieInfoText = document.querySelectorAll(".movie-info");
 
+  changeTheme();
+
   console.log("MOVIES CHARGED!");
+}
+
+function chargeCategories(newCategoryData, targetContainer) {
+  // Por cada pelicula, se creara nuevos elementos para agregarlos a las peliculas en tendencia
+  newCategoryData.forEach((category) => {
+    // Creamos el boton de la categoria
+    const categoryContainer = document.createElement("button");
+    categoryContainer.classList.add("category");
+    // Creamos el recuadro de color de la categoria
+    const categoryColor = document.createElement("div");
+    categoryColor.classList.add("category-color");
+    categoryColor.id = `id${category.id}`;
+    // Creamos el espacio para el texto de la categoria
+    const categoryName = document.createElement("p");
+    categoryName.classList.add("category-name");
+    // Creamos el texto de la categoria
+    const categoryText = document.createTextNode(category.name);
+
+    // Combinamos todos los elementos
+    categoryName.appendChild(categoryText);
+
+    categoryContainer.appendChild(categoryColor);
+    categoryContainer.appendChild(categoryName);
+    targetContainer.appendChild(categoryContainer);
+  });
+
+  myP = document.querySelectorAll("p");
 }
 
 // Funcion para cambiar los temas
@@ -368,9 +376,14 @@ choosenMovieCloseButton.addEventListener("click", () => {
 let actualTheme = "light";
 let panelInfoPelicula = false;
 
+// Variables que guardan los datos extraidos de las APIS
 let weeklyMovies;
 let dailyMovies;
+let categoryList;
 
-obtenerCategorias();
+// Se define el hash como vacio al cargar la pagina
+location.hash = "";
+
+getCategories();
 getDailyTrending();
 getWeeklyTrending();
