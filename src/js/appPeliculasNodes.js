@@ -16,12 +16,15 @@ const searchInput = document.querySelector(".search-input");
 const searchButton = document.querySelector(".search-button");
 
 // Seccion tendencias
+const movieContainerSubtitle = document.querySelector(
+  ".movie-container-subtitle"
+);
 let movieInfoText = document.querySelectorAll(".movie-info");
 let movieImg = document.querySelectorAll(".movie-img");
 
 // Seccion tendencias diarias
-const dailyMoviesContainer = document.querySelector(
-  ".daily-trends-section .daily-movies-container"
+const mainMoviesContainer = document.querySelector(
+  ".main-movies-section .main-movies-container"
 );
 
 // Seccion tendencias semanales

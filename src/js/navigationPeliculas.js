@@ -22,10 +22,15 @@ function navigatorPeliculas() {
 }
 
 function dailyTrendsPage() {
+  movieContainerSubtitle.textContent = "Daily Trends";
   console.log("Trends");
+  chargeMovies(dailyMovies, "day");
 }
 
-function weeklyTrendsPage() {}
+function weeklyTrendsPage() {
+  movieContainerSubtitle.textContent = "Weekly Trends";
+  chargeMovies(weeklyMovies, "week");
+}
 
 function searchPage() {
   console.log("Search!");
@@ -36,7 +41,7 @@ function moviesPage() {
 }
 
 function favoritesPage() {
-  console.log("Category!");
+  movieContainerSubtitle.textContent = "Favorite Movies";
 }
 
 function homePage() {}

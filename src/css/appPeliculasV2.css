@@ -209,18 +209,18 @@ h3 {
 
 /* Daily and Weekly Trending Section*/
 
-.daily-trends-section, .weekly-trends-section {
+.main-movies-section, .weekly-trends-section {
     width: 900px;
     height: fit-content;
 
     margin: auto;
 }
 
-.subtitle-daily-section, .subtitle-weekly-section {
+.movie-container-subtitle, .subtitle-weekly-section {
     color: var(--primary-color);
 }
 
-.daily-movies-container, .weekly-movies-container {
+.main-movies-container, .weekly-movies-container {
     display: grid;
     justify-content: center;
     place-items: center;
