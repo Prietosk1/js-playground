@@ -46,6 +46,9 @@ let choosenMovieRating = document.querySelector(".choosen-movie-rating");
 let choosenMovieDate = document.querySelector(".choosen-movie-date");
 let choosenMovieOverview = document.querySelector(".choosen-movie-overview");
 const choosenMovieGenres = document.querySelector(".choosen-movie-genres");
+let categoriesToDelete = document.querySelectorAll(
+  ".choosen-movie-genres .category"
+);
 
 // Footer
 const footerContainer = document.querySelector("footer");

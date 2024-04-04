@@ -131,7 +131,7 @@ async function obtenerCategorias() {
 
 // Funcion para cambiar los temas
 function changeTheme() {
-  if (actualTheme == "light") {
+  if (actualTheme == "dark") {
     // Cambios generales
     changeStyleMultiple(myh2, "color", "var(--light-mode-background");
     changeStyleMultiple(myh3, "color", "var(--light-mode-background");
@@ -171,9 +171,6 @@ function changeTheme() {
       "backgroundColor",
       "var(--light-border-color)"
     );
-
-    // Se cambia el tema a oscuro
-    actualTheme = "dark";
   } else {
     changeStyleMultiple(myh2, "color", "var(--primary-color)");
     changeStyleMultiple(myh3, "color", "var(--primary-color)");
@@ -217,9 +214,6 @@ function changeTheme() {
 
     // Cambios en el footer
     changeStyleSingle(footerContainer, "backgroundColor", "var(--other-use)");
-
-    // Se cambia el tema a claro
-    actualTheme = "light";
   }
 }
 
@@ -243,7 +237,6 @@ function closeMovieInfo() {
 
 // Funcion para mostrar datos de la pelicula
 async function showMovieInfo(myId, myTime) {
-  choosenMovieSection.classList.remove("inactive");
   // Se consulta una vez mas a la API con los datos de las tendencias diarias
   const results = await fetch(
     "https://api.themoviedb.org/3/trending/movie/" +
@@ -269,26 +262,52 @@ async function showMovieInfo(myId, myTime) {
   // Guardamos las categorias en un arreglo
   const categories = categoryResultsData.genres;
 
+  // Obtenemos las categorias actuales para luego eliminarlas
+  categoriesToDelete = document.querySelectorAll(
+    ".choosen-movie-genres .category"
+  );
+  categoriesToDelete.forEach((myCategorie) => {
+    myCategorie.remove();
+  });
+
+  // Limpiamos la parte de las calificaciones
+  while (choosenMovieRating.firstChild) {
+    choosenMovieRating.removeChild(choosenMovieRating.firstChild);
+  }
+
   // Revisamos en el array cada elemento para ver si encontramos su posicion, y asi poder acceder a los datos relevantes
   movies.forEach((movie, index) => {
     if (movie.id == myId) {
       console.log("ENTRE");
+      // Actualizamos la portada
       choosenMovieImg.setAttribute(
         "src",
         "https://image.tmdb.org/t/p/original" + movie.backdrop_path
       );
       choosenMovieTitle.textContent = movie.title;
+
+      // Actualizamos la puntuacion
+      const bigStaricon = document.createElement("img");
+      bigStaricon.setAttribute("src", "/src/assets/img/star.png");
+      bigStaricon.setAttribute("alt", "Star Icon");
+      bigStaricon.classList.add("big-star-icon");
       const choosenMovieRatingText = document.createTextNode(
         movie.vote_average.toFixed(1)
       );
 
-      const choosenMovieDateText = document.createTextNode(movie.release_date);
+      // Conectamos estos elementos a la parte de la calificacion
+      choosenMovieRating.appendChild(bigStaricon);
+      choosenMovieRating.appendChild(choosenMovieRatingText);
 
+      // Actualizamos el contenido de la fecha
+      choosenMovieDate.textContent = `- Release date: ${movie.release_date}`;
+
+      // Actualizamos la descripcion
       choosenMovieOverview.textContent = movie.overview;
-      console.log(movie.genre_ids.length);
-      console.log(categories);
+
+      // Dependiendo de la cantidad de categorias se agregaran
       for (i = 0; i < movie.genre_ids.length; i++) {
-        console.log("YO TAMBIEN ENTRE");
+        // Se crea el boton contenedor de la categoria
         const categoryContainer = document.createElement("button");
         categoryContainer.classList.add("category");
         // Creamos el recuadro de color de la categoria
@@ -298,6 +317,11 @@ async function showMovieInfo(myId, myTime) {
         // Creamos el espacio para el texto de la categoria
         const categoryName = document.createElement("p");
         categoryName.classList.add("category-name");
+        if (actualTheme == "light") {
+          categoryName.style.color = "var(--primary-color)";
+        } else {
+          categoryName.style.color = "var(--light-mode-background)";
+        }
         // Creamos el texto de la categoria
         let categoryText;
         categories.forEach((myCategory, index) => {
@@ -307,6 +331,7 @@ async function showMovieInfo(myId, myTime) {
           }
         });
 
+        // Conectamos los elementos restantes
         categoryName.appendChild(categoryText);
 
         categoryContainer.appendChild(categoryColor);
@@ -317,16 +342,22 @@ async function showMovieInfo(myId, myTime) {
       }
 
       choosenMovieRating.appendChild(choosenMovieRatingText);
-      choosenMovieDate.appendChild(choosenMovieDateText);
+
       return;
     }
-    console.log("F mano");
+
+    // Por ultimo mostramos el nuevo modal
+    choosenMovieSection.classList.remove("inactive");
   });
 }
 
 // Cada ves que se de click al boton de cambio de tema se cambiara el
 switchButton.addEventListener("click", () => {
-  console.log("cambio");
+  if (actualTheme == "light") {
+    actualTheme = "dark";
+  } else {
+    actualTheme = "light";
+  }
   changeTheme();
 });
 
