@@ -17,13 +17,14 @@
     <title>Oski Movies</title>
   </head>
   <body>
+    <!-- Navbar-->
     <header class="navbar">
       <nav class="navbar-container">
-        <h1 class="navbar-title">Oski Movies</h1>
+        <h1><a class="navbar-title" href="">Oski Movies</a></h1>
         <div class="navbar-list-container">
-          <a href="">Daily Trends</a>
-          <a href="">Weekly Trends</a>
-          <a href="">Categories</a>
+          <a href="#dailyTrends">Daily Trends</a>
+          <a href="#weeklyTrends">Weekly Trends</a>
+          <a href="#favorites">Favorites</a>
         </div>
         <div class="mode-switch-container">
           <div class="mode-switch">
@@ -41,6 +42,9 @@
     </header>
     <div class="breaker-line-2" id="breaker-line-navbar"></div>
     <div class="separator110"></div>
+    <!-- End Navbar -->
+
+    <!-- Search bar -->
     <section class="search-section">
       <h2 class="subtitle-search-section">Search your movie</h2>
       <form class="search-form">
@@ -51,6 +55,9 @@
       </form>
     </section>
     <div class="separator30"></div>
+    <!-- End Search Bar-->
+
+    <!-- Movie containers -->
     <section class="daily-trends-section">
       <h2 class="subtitle-daily-section">Daily trends</h2>
       <div class="breaker-line"></div>
@@ -157,10 +164,15 @@
         alt="Close window Button"
       />
     </section>
-    <footer><h3>Made by Oski</h3></footer>
+    <!-- end Movie containers-->
 
-    <script src="/src/js/secrets.js"></script>
+    <!-- Footer -->
+    <footer><h3>Made by Oski</h3></footer>
+    <!-- End Footer -->
+
     <script src="/src/js/appPeliculasNodes.js"></script>
+    <script src="/src/js/navigationPeliculas.js"></script>
+    <script src="/src/js/secrets.js"></script>
     <script src="/src/js/appPeliculasV2.js"></script>
   </body>
 </html>
