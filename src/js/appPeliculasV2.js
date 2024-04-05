@@ -280,6 +280,10 @@ function changeTheme() {
     changeStyleSingle(searchForm, "border", "2px solid var(--border-color)");
     changeStyleSingle(searchInput, "color", "var(--light-mode-background)");
 
+    // cambios en la home page
+    changeStyleSingle(homeMainTitle, "color", "var(--border-color)");
+    changeStyleMultiple(homeTextItem, "backgroundColor", "var(--border-color)");
+
     // Cambios modal de Pelicula elegida
     changeStyleSingle(
       choosenMovieContainer,
@@ -326,6 +330,14 @@ function changeTheme() {
     // Cambios seccion busqueda
     changeStyleSingle(searchForm, "border", "2px solid var(--primary-color)");
     changeStyleSingle(searchInput, "color", "var(--primary-color)");
+
+    // cambios en la home page
+    changeStyleSingle(homeMainTitle, "color", "var(--border-color)");
+    changeStyleMultiple(
+      homeTextItem,
+      "backgroundColor",
+      "var(--light-border-color)"
+    );
 
     // Cambios modal de Pelicula elegida
     changeStyleSingle(

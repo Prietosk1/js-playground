@@ -23,12 +23,14 @@ function navigatorPeliculas() {
 
 function dailyTrendsPage() {
   movieContainerSubtitle.textContent = "Daily Trends";
+  mainMoviesSection.classList.remove("inactive");
   console.log("Trends");
   chargeMovies(dailyMovies, "day");
 }
 
 function weeklyTrendsPage() {
   movieContainerSubtitle.textContent = "Weekly Trends";
+  mainMoviesSection.classList.remove("inactive");
   chargeMovies(weeklyMovies, "week");
 }
 
@@ -44,4 +46,7 @@ function favoritesPage() {
   movieContainerSubtitle.textContent = "Favorite Movies";
 }
 
-function homePage() {}
+function homePage() {
+  mainMoviesSection.classList.add("inactive");
+  console.log("si");
+}

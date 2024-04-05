@@ -1,9 +1,9 @@
 @media (max-width: 1000px) {
-    /* Daily Trending Section*/
-    .daily-trends-section, .weekly-trends-section {
+    /* Movies Section*/
+    .main-movies-section {
         width: 600px;
     }
-    .daily-movies-container, .weekly-movies-container {
+    .main-movies-container {
         grid-template-columns: repeat(3, 1fr);
     }
 }
@@ -52,6 +52,21 @@
     .search-input {
         width: 75%;
     }
+
+    /* Home Section*/
+    .home-container {
+        flex-direction: column;
+    }
+    .home-main-img {
+        width: 180px;
+    }
+    .home-text-container {
+        width: 100%;
+    }
+    .home-main-text {
+        text-align: justify;
+    }
+
     /* Category section*/
     .choosen-movie-container {
         max-height: 80vh;
@@ -75,10 +90,10 @@
 
 @media (max-width: 700px) {
     /* Daily Trending Section*/
-    .daily-trends-section, .weekly-trends-section {
+    .main-movies-section {
         width: 90%;
     }
-    .daily-movies-container, .weekly-movies-container  {
+    .main-movies-container  {
         grid-template-columns: repeat(2, 1fr);
     }
 
@@ -112,7 +127,7 @@
 @media (max-width: 350px) {
     /* Daily Trending Section*/
 
-    .daily-movies-container, .weekly-movies-container {
+    .main-movies-container {
         grid-template-columns: 1fr;
     }
 }

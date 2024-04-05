@@ -15,6 +15,10 @@ const searchForm = document.querySelector(".search-form");
 const searchInput = document.querySelector(".search-input");
 const searchButton = document.querySelector(".search-button");
 
+// Seccion home
+const homeMainTitle = document.querySelector(".home-main-title");
+const homeTextItem = document.querySelectorAll(".home-text-item");
+
 // Seccion tendencias
 const movieContainerSubtitle = document.querySelector(
   ".movie-container-subtitle"
@@ -23,6 +27,7 @@ let movieInfoText = document.querySelectorAll(".movie-info");
 let movieImg = document.querySelectorAll(".movie-img");
 
 // Seccion tendencias diarias
+const mainMoviesSection = document.querySelector(".main-movies-section");
 const mainMoviesContainer = document.querySelector(
   ".main-movies-section .main-movies-container"
 );
