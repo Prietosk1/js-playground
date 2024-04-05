@@ -13,6 +13,9 @@
     .mobile-button-container {
         display: none;
     }
+    .mobile-navbar {
+        display: none;
+    }
 }
 @media (max-width: 850px) {
     h2 {

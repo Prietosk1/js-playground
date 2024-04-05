@@ -276,6 +276,18 @@ function changeTheme() {
       "var(--light-mode-background)"
     );
 
+    // Cambios mobile navbar
+    changeStyleSingle(
+      mobileNavbar,
+      "backgroundColor",
+      "var(--dark-mode-background)"
+    );
+    changeStyleMultiple(
+      mobileNavbarOptions,
+      "color",
+      "var(--light-mode-background)"
+    );
+
     // Cambios seccion busqueda
     changeStyleSingle(searchForm, "border", "2px solid var(--border-color)");
     changeStyleSingle(searchInput, "color", "var(--light-mode-background)");
@@ -326,6 +338,14 @@ function changeTheme() {
       "backgroundColor",
       "var(--dark-mode-background)"
     );
+
+    // Cambios mobile navbar
+    changeStyleSingle(
+      mobileNavbar,
+      "backgroundColor",
+      "var(--light-mode-background)"
+    );
+    changeStyleMultiple(mobileNavbarOptions, "color", "var(--primary-color)");
 
     // Cambios seccion busqueda
     changeStyleSingle(searchForm, "border", "2px solid var(--primary-color)");
@@ -384,9 +404,23 @@ choosenMovieCloseButton.addEventListener("click", () => {
   closeMovieInfo();
 });
 
+// Cada vez que se presione las 3 barras en la vista mobil, se abrira o cerra una navbar
+mobileButtonContainer.addEventListener("click", () => {
+  if (showMobileNavbar == false) {
+    mobileNavbar.classList.remove("inactive");
+    mobileBars.setAttribute("src", "/src/assets/img/cancelar.png");
+    showMobileNavbar = true;
+  } else {
+    mobileNavbar.classList.add("inactive");
+    mobileBars.setAttribute("src", "/src/assets/img/3-lines.png");
+    showMobileNavbar = false;
+  }
+});
+
 // Variables de estados
 let actualTheme = "light";
 let panelInfoPelicula = false;
+let showMobileNavbar = false;
 
 // Variables que guardan los datos extraidos de las APIS
 let weeklyMovies;

@@ -4,11 +4,21 @@ const myh2 = document.querySelectorAll("h2");
 const myh3 = document.querySelectorAll("h3");
 let myP = document.querySelectorAll("p");
 
-// Headre - navbar
+// Header - navbar
 const navbar = document.querySelector(".navbar");
 const navbarOptions = document.querySelectorAll(".navbar-list-container a");
 const switchButton = document.querySelector(".mode-switch");
 const circleSwitchButton = document.querySelector(".actual-mode");
+const mobileButtonContainer = document.querySelector(
+  ".mobile-button-container"
+);
+
+// Mobile navbar
+const mobileNavbar = document.querySelector(".mobile-navbar");
+const mobileBars = document.querySelector(".mobile-bars");
+const mobileNavbarOptions = document.querySelectorAll(
+  ".mobile-navbar-option a"
+);
 
 // Seccion busquedas
 const searchForm = document.querySelector(".search-form");
