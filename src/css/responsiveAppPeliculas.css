@@ -66,6 +66,9 @@
     .home-main-text {
         text-align: justify;
     }
+    .home-text-item {
+        width: 100%;
+    }
 
     /* Category section*/
     .choosen-movie-container {
