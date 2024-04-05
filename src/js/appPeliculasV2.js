@@ -42,7 +42,7 @@ async function getCategories() {
 
 // Funcion para mostrar datos de la pelicula
 async function showMovieInfo(myId, myTime) {
-  // Se consulta una vez mas a la API con los datos de las tendencias diarias
+  // Se consulta una vez mas a la API con los datos de las tendencias
   const results = await fetch(
     "https://api.themoviedb.org/3/trending/movie/" +
       myTime +
@@ -80,6 +80,9 @@ async function showMovieInfo(myId, myTime) {
     choosenMovieRating.removeChild(choosenMovieRating.firstChild);
   }
 
+  favoriteMovieID = myId;
+  console.log(favoriteMovieID);
+
   // Revisamos en el array cada elemento para ver si encontramos su posicion, y asi poder acceder a los datos relevantes
   movies.forEach((movie, index) => {
     if (movie.id == myId) {
@@ -105,6 +108,14 @@ async function showMovieInfo(myId, myTime) {
 
       // Actualizamos el contenido de la fecha
       choosenMovieDate.textContent = `- Release date: ${movie.release_date}`;
+
+      if (findMovieID(favoriteMovieID, favoriteMoviesList)) {
+        addFavoriteButtonText.textContent = "Remove favorite";
+        addFavoriteButtonIcon.setAttribute("src", "/src/assets/img/minus.png");
+      } else {
+        addFavoriteButtonText.textContent = "Add favorite";
+        addFavoriteButtonIcon.setAttribute("src", "/src/assets/img/plus.png");
+      }
 
       // Actualizamos la descripcion
       choosenMovieOverview.textContent = movie.overview;
@@ -302,6 +313,11 @@ function changeTheme() {
       "backgroundColor",
       "var(--dark-mode-background)"
     );
+    changeStyleSingle(
+      addFavoriteButtonText,
+      "color",
+      "var(--light-mode-background)"
+    );
 
     // Cambios footer
     changeStyleSingle(
@@ -365,6 +381,7 @@ function changeTheme() {
       "backgroundColor",
       "var(--light-mode-background)"
     );
+    changeStyleSingle(addFavoriteButtonText, "color", "var(--primary-color)");
 
     // Cambios en el footer
     changeStyleSingle(footerContainer, "backgroundColor", "var(--other-use)");
@@ -387,6 +404,37 @@ function changeStyleMultiple(nodeList, newProperty, newValue) {
 // Funcion para cerrar el modal de la info de la pelicula
 function closeMovieInfo() {
   choosenMovieSection.classList.add("inactive");
+}
+
+//
+function addFavoriteMovie(movieID) {
+  const idSearchResult = findMovieID(movieID, favoriteMoviesList);
+  if (idSearchResult == true) {
+    const idIndex = favoriteMoviesList.indexOf(movieID);
+    favoriteMoviesList.splice(idIndex, 1);
+    console.log("pelicula eliminada");
+    addFavoriteButtonText.textContent = "Add favorite";
+    addFavoriteButtonIcon.setAttribute("src", "/src/assets/img/plus.png");
+  } else {
+    favoriteMoviesList.push(movieID);
+    console.log("pelicula agregada");
+    addFavoriteButtonText.textContent = "Remove favorite";
+    addFavoriteButtonIcon.setAttribute("src", "/src/assets/img/minus.png");
+  }
+  console.log(favoriteMoviesList);
+}
+
+function findMovieID(myID, myArray) {
+  if (myArray.length == 0) {
+    return false;
+  } else {
+    idFound = myArray.indexOf(myID);
+    if (idFound == -1) {
+      return false;
+    } else {
+      return true;
+    }
+  }
 }
 
 // Cada ves que se de click al boton de cambio de tema se cambiara el
@@ -417,6 +465,10 @@ mobileButtonContainer.addEventListener("click", () => {
   }
 });
 
+addFavoriteContainer.addEventListener("click", () => {
+  addFavoriteMovie(favoriteMovieID);
+});
+
 // Variables de estados
 let actualTheme = "light";
 let panelInfoPelicula = false;
@@ -426,6 +478,10 @@ let showMobileNavbar = false;
 let weeklyMovies;
 let dailyMovies;
 let categoryList;
+
+// Variables con datos temporales
+let favoriteMovieID;
+let favoriteMoviesList = [];
 
 // Se define el hash como vacio al cargar la pagina
 location.hash = "";

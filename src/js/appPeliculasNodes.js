@@ -67,6 +67,11 @@ const choosenMovieGenres = document.querySelector(".choosen-movie-genres");
 let categoriesToDelete = document.querySelectorAll(
   ".choosen-movie-genres .category"
 );
+const addFavoriteContainer = document.querySelector(
+  ".favorite-button-container"
+);
+const addFavoriteButtonText = document.querySelector(".add-favorite-text");
+const addFavoriteButtonIcon = document.querySelector(".add-favorite-icon");
 
 // Footer
 const footerContainer = document.querySelector("footer");

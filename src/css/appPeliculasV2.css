@@ -544,6 +544,55 @@ ul {
   margin-right: 10px;
 }
 
+.choosen-movie-upper-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.favorite-button-container {
+  display: flex;
+  align-items: center;
+
+  height: 35px;
+
+  background-color: rgba(255, 166, 0, 0.5);
+
+  border-radius: 5px;
+}
+
+.favorite-button-container:hover {
+  background-color: rgba(255, 166, 0, 0.8);
+}
+
+.favorite-button-container:hover, .add-favorite-text:hover, .add-favorite-icon:hover {
+  cursor: pointer;
+}
+
+.add-favorite-text {
+  font-weight: bold;
+
+  padding: 7px;
+
+  border: none;
+
+  background: transparent;
+  color: var(--primary-color);
+
+  border-radius: 0 5px 5px 0;
+}
+
+.add-favorite-icon {
+  width: auto;
+  height: 25px;
+  
+  padding: 7px;
+
+
+  border-right: 1px solid black;
+  border-radius: 5px 0 0 5px;
+}
+
 .choosen-movie-overview {
   margin: 15px 0;
 }
