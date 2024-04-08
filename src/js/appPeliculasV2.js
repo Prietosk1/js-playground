@@ -9,6 +9,10 @@ async function getDailyTrending() {
 
   // Guardamos las peliculas en un arreglo
   dailyMovies = dailyResultsData.results;
+
+  if (location.hash.startsWith("#dailyTrends")) {
+    navigatorPeliculas();
+  }
 }
 
 async function getWeeklyTrending() {
@@ -22,6 +26,10 @@ async function getWeeklyTrending() {
 
   // Guardamos las peliculas en un arreglo
   weeklyMovies = dailyResultsData.results;
+
+  if (location.hash.startsWith("#weeklyTrends")) {
+    navigatorPeliculas();
+  }
 }
 
 // Funcion pra obtener las categorias
@@ -360,6 +368,9 @@ function chargeCategories(newCategoryData, targetContainer) {
 
 // Funcion para cambiar los temas
 function changeTheme() {
+  // Se actualizan algunas variables para que recapturen algunos elementos
+  movieInfoText = document.querySelectorAll(".movie-info");
+
   if (actualTheme == "dark") {
     // Cambios generales
     changeStyleMultiple(myh2, "color", "var(--light-mode-background");
@@ -577,6 +588,12 @@ addFavoriteContainer.addEventListener("click", () => {
   }
 });
 
+choosenMovieSection.addEventListener("click", (evento) => {
+  if (evento.target === choosenMovieSection) {
+    choosenMovieSection.classList.add("inactive");
+  }
+});
+
 // Variables de estados
 let actualTheme = "light";
 let panelInfoPelicula = false;
@@ -593,7 +610,6 @@ let favoriteMoviesList = [];
 let isFavoriteMovieRemoved;
 
 // Se define el hash como vacio al cargar la pagina
-location.hash = "";
 
 getCategories();
 getDailyTrending();
