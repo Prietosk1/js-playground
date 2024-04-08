@@ -42,6 +42,9 @@ async function getCategories() {
 
 // Funcion para mostrar datos de la pelicula
 async function showMovieInfo(myId, myTime) {
+  // Se indica el estado de si la pelicula es o no removida ( es util para la seccion de favoritos)
+  isFavoriteMovieRemoved = false;
+
   // Se consulta una vez mas a la API con los datos de las tendencias
   const results = await fetch(
     "https://api.themoviedb.org/3/trending/movie/" +
@@ -107,7 +110,7 @@ async function showMovieInfo(myId, myTime) {
       choosenMovieRating.appendChild(choosenMovieRatingText);
 
       // Actualizamos el contenido de la fecha
-      choosenMovieDate.textContent = `- Release date: ${movie.release_date}`;
+      choosenMovieDate.textContent = `Release date: ${movie.release_date}`;
 
       if (findMovieID(favoriteMovieID, favoriteMoviesList)) {
         addFavoriteButtonText.textContent = "Remove favorite";
@@ -166,6 +169,99 @@ async function showMovieInfo(myId, myTime) {
 }
 
 // Funcion para cargar las peliculas
+
+function chargeFavoriteMovies() {
+  mainMoviesContainer.innerHTML = "";
+  console.log("----");
+  for (i = 0; i < favoriteMoviesList.length; i++) {
+    let actualIndex = 0;
+    while (
+      actualIndex < dailyMovies.length ||
+      actualIndex < weeklyMovies.length
+    ) {
+      if (dailyMovies[actualIndex].id == favoriteMoviesList[i]) {
+        console.log(dailyMovies[actualIndex].id);
+        console.log(favoriteMoviesList[i]);
+        chargeSingleMovie(dailyMovies[actualIndex], "day");
+        actualIndex = dailyMovies.length;
+      } else if (weeklyMovies[actualIndex].id == favoriteMoviesList[i]) {
+        console.log(weeklyMovies[actualIndex].id);
+        console.log(favoriteMoviesList[i]);
+        chargeSingleMovie(weeklyMovies[actualIndex], "week");
+        actualIndex = weeklyMovies.length;
+      }
+      actualIndex++;
+    }
+    actualIndex = 0;
+  }
+}
+
+function chargeNoFavoritesSection() {
+  homeMainImg.setAttribute("src", "/src/assets/img/no-results.png");
+  changeStyleSingle(homeMainText, "fontWeight", "bold");
+  changeStyleSingle(homeMainText, "fontSize", "24px");
+  homeMainText.textContent =
+    "You don't have favorite movies yet. Do you want to add some?";
+  textItem1.textContent =
+    "1. First, choose the movie you want, whether it's from the weekly or daily trends.";
+  textItem2.textContent =
+    "2. You will find a yellow button to add or remove a movie as a favorite.";
+  textItem3.textContent =
+    "3. That's it. Try to return to the favorites movies section, and you will find all your favorite movies that you have added.";
+  changeStyleSingle(homeMainTitle, "display", "none");
+}
+
+function chargeSingleMovie(movie, time) {
+  // Creamos el contenedor de las peliculas y le agregamos una id unica
+  const movieContainer = document.createElement("div");
+  movieContainer.classList.add("movie-container");
+  movieContainer.id = movie.id;
+  movieContainer.classList.add(time);
+
+  // Creamos la imagen con sus propiedades principales
+  const movieImg = document.createElement("img");
+  movieImg.classList.add("movie-img");
+  movieImg.setAttribute("alt", movie.title);
+  movieImg.setAttribute(
+    "src",
+    `https://image.tmdb.org/t/p/w300${movie.poster_path}`
+  );
+  movieImg.onclick = function () {
+    showMovieInfo(movieContainer.id, time);
+  };
+
+  // Creamos el contenedor de la info de la pelicula
+  const movieInfo = document.createElement("div");
+  movieInfo.classList.add("movie-info");
+
+  // Primero se crea el contenedor del rating
+  const movieRating = document.createElement("p");
+  movieRating.classList.add("movie-rating");
+  // Empezamos con su icono
+  const starIcon = document.createElement("img");
+  starIcon.classList.add("star-icon");
+  starIcon.setAttribute("alt", "Star Icon");
+  starIcon.setAttribute("src", "/src/assets/img/star.png");
+  // Y terminamos con su calificacion
+  const ratingText = document.createTextNode(movie.vote_average.toFixed(1));
+
+  // Ahora crearemos su titulo
+  const movieTitle = document.createTextNode(movie.title);
+
+  // Unimos los elementos de la calificacion
+  movieRating.appendChild(starIcon);
+  movieRating.appendChild(ratingText);
+
+  // Los elementos de la info
+  movieInfo.appendChild(movieRating);
+  movieInfo.appendChild(movieTitle);
+
+  // Los elementos de las imagenes y la info, al contenedor principal
+  movieContainer.appendChild(movieImg);
+  movieContainer.appendChild(movieInfo);
+  mainMoviesContainer.appendChild(movieContainer);
+}
+
 function chargeMovies(newData, time) {
   // Limpiamos todo el contenedor
   mainMoviesContainer.innerHTML = "";
@@ -406,7 +502,7 @@ function closeMovieInfo() {
   choosenMovieSection.classList.add("inactive");
 }
 
-//
+// Funcion para agregar una pelicula por id
 function addFavoriteMovie(movieID) {
   const idSearchResult = findMovieID(movieID, favoriteMoviesList);
   if (idSearchResult == true) {
@@ -466,7 +562,19 @@ mobileButtonContainer.addEventListener("click", () => {
 });
 
 addFavoriteContainer.addEventListener("click", () => {
-  addFavoriteMovie(favoriteMovieID);
+  if (location.hash == "#favorites") {
+    const removedMovie = document.getElementById(favoriteMovieID);
+    mainMoviesContainer.removeChild(removedMovie);
+    choosenMovieSection.classList.add("inactive");
+    addFavoriteMovie(favoriteMovieID);
+    if (favoriteMoviesList.length == 0) {
+      mainMoviesSection.classList.add("inactive");
+      chargeNoFavoritesSection();
+      homeSection.classList.remove("inactive");
+    }
+  } else {
+    addFavoriteMovie(favoriteMovieID);
+  }
 });
 
 // Variables de estados
@@ -482,6 +590,7 @@ let categoryList;
 // Variables con datos temporales
 let favoriteMovieID;
 let favoriteMoviesList = [];
+let isFavoriteMovieRemoved;
 
 // Se define el hash como vacio al cargar la pagina
 location.hash = "";

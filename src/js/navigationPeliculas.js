@@ -23,6 +23,7 @@ function navigatorPeliculas() {
 
 function dailyTrendsPage() {
   movieContainerSubtitle.textContent = "Daily Trends";
+  homeSection.classList.add("inactive");
   mainMoviesSection.classList.remove("inactive");
   console.log("Trends");
   chargeMovies(dailyMovies, "day");
@@ -30,6 +31,7 @@ function dailyTrendsPage() {
 
 function weeklyTrendsPage() {
   movieContainerSubtitle.textContent = "Weekly Trends";
+  homeSection.classList.add("inactive");
   mainMoviesSection.classList.remove("inactive");
   chargeMovies(weeklyMovies, "week");
 }
@@ -43,10 +45,18 @@ function moviesPage() {
 }
 
 function favoritesPage() {
-  movieContainerSubtitle.textContent = "Favorite Movies";
+  if (favoriteMoviesList.length == 0) {
+    chargeNoFavoritesSection();
+    homeSection.classList.remove("inactive");
+    mainMoviesSection.classList.add("inactive");
+  } else {
+    chargeFavoriteMovies();
+  }
 }
 
 function homePage() {
   mainMoviesSection.classList.add("inactive");
   console.log("si");
 }
+
+const isHomeSectionActive = true;

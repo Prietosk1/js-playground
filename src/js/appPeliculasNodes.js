@@ -26,8 +26,14 @@ const searchInput = document.querySelector(".search-input");
 const searchButton = document.querySelector(".search-button");
 
 // Seccion home
+const homeSection = document.querySelector(".home-section");
 const homeMainTitle = document.querySelector(".home-main-title");
 const homeTextItem = document.querySelectorAll(".home-text-item");
+const homeMainImg = document.querySelector(".home-main-img");
+const homeMainText = document.querySelector(".home-main-text");
+const textItem1 = document.querySelector("#home-text-item-1");
+const textItem2 = document.querySelector("#home-text-item-2");
+const textItem3 = document.querySelector("#home-text-item-3");
 
 // Seccion tendencias
 const movieContainerSubtitle = document.querySelector(
